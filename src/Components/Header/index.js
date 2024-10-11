@@ -13,6 +13,7 @@ import { color } from "../../Utils/theme";
 import { useDispatch, useSelector } from "react-redux";
 import auth from "../../Redux/Reducer/auth/action";
 import { SettingsOutlined } from "@mui/icons-material";
+import SettingDrawer from "../SettingDrawer";
 
 const Header = () => {
   const { setTheme } = auth;
@@ -110,15 +111,7 @@ const Header = () => {
         <SettingsOutlined />
       </IconButton>
 
-      <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
-        <Box style={{ minWidth: 250, padding: 20 }}>
-          <Typography variant="h5">Setting</Typography>
-          <Divider />
-          <Grid2 style={{ marginTop: 20 }}>
-            <Typography>Mode</Typography>
-          </Grid2>
-        </Box>
-      </Drawer>
+      <SettingDrawer open={open} handleClick={() => setOpen(false)} />
     </Grid2>
   );
 };
