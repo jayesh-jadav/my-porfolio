@@ -1,118 +1,100 @@
 import {
-  Box,
-  Divider,
-  Drawer,
   Grid2,
-  IconButton,
   Tab,
   Tabs,
   Typography,
+  Drawer,
+  IconButton,
 } from "@mui/material";
 import React, { useState } from "react";
-import { color } from "../../Utils/theme";
-import { useDispatch, useSelector } from "react-redux";
-import auth from "../../Redux/Reducer/auth/action";
-import { SettingsOutlined } from "@mui/icons-material";
-import SettingDrawer from "../SettingDrawer";
+import { Menu } from "@mui/icons-material"; // Import Menu icon for the drawer toggle
+import useStyles from "./styles";
+import { colors } from "../../Config/theme";
 
 const Header = () => {
-  const { setTheme } = auth;
-  const { newTheme } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
-  const [open, setOpen] = useState(false);
-  const handleChange = (newValue, index) => {
-    setValue(index);
+  const [drawerOpen, setDrawerOpen] = useState(false); // State for Drawer open/close
+  const classes = useStyles();
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    setDrawerOpen(false); // Close the drawer when a tab is clicked
   };
 
-  // useEffect(() => {
-  //   dispatch(setTheme(color[0]));
-  // }, [color]);
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
+
   return (
     <Grid2
       container
       style={{
         display: "flex",
         justifyContent: "space-between",
-        padding: 20,
-        paddingRight: 30,
-        paddingLeft: 30,
+        padding: 30,
       }}
     >
       <Typography
         style={{
           color: "transparent",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
-          backgroundImage: newTheme.colors.gradient,
           fontSize: 30,
           fontWeight: "bold",
-          fontStyle: "italic",
+          backgroundImage: colors.gradient,
+          backgroundSize: "cover",
+          backgroundClip: "text",
+          WebkitBackgroundClip: "text",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         Jayesh Jadav
       </Typography>
+
+      {/* Icon Button for Mobile Menu */}
+      <IconButton
+        onClick={toggleDrawer(true)}
+        sx={{ display: { xs: "block", md: "none" } }} // Show only on mobile
+      >
+        <Menu />
+      </IconButton>
+
+      {/* Drawer for Mobile */}
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          classes={{ indicator: classes.indicator }}
+          orientation="vertical"
+          sx={{ width: 250 }}
+        >
+          <Tab label="Home" className={classes.tab} />
+          <Tab label="About" className={classes.tab} />
+          <Tab label="Services" className={classes.tab} />
+          <Tab label="Contact" className={classes.tab} />
+        </Tabs>
+      </Drawer>
+
+      {/* Desktop Tabs */}
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="Tabs with custom gradient hover and active styles"
-        selectionFollowsFocus
+        classes={{ indicator: classes.indicator }}
+        sx={{ display: { xs: "none", md: "flex" } }}
       >
-        <Tab
-          label="Home"
-          sx={{
-            // Smooth transition
-            transition: "background-color 10s ease",
-            "&:hover": {
-              transition: "background-color 2s ease",
-              background: color.gradient,
-              color: color.text,
-            },
-            "&.Mui-selected": {
-              background: color.gradient,
-              color: color.text,
-            },
-          }}
-        />
-        <Tab
-          label="About"
-          sx={{
-            "&:hover": {
-              background: color.gradient,
-              color: color.text,
-              transition: "background-color 0.3s ease, color 0.3s ease",
-            },
-            "&.Mui-selected": {
-              background: color.gradient,
-              color: color.text,
-            },
-          }}
-        />
-        <Tab
-          label="Contact"
-          sx={{
-            transition: "background-color 0.3s ease, color 0.3s ease",
-            "&:hover": {
-              background: color.gradient,
-              color: color.text,
-            },
-            "&.Mui-selected": {
-              background: color.gradient,
-              color: color.text,
-            },
-          }}
-        />
+        <Tab label="Home" className={classes.tab} />
+        <Tab label="About" className={classes.tab} />
+        <Tab label="Services" className={classes.tab} />
+        <Tab label="Contact" className={classes.tab} />
       </Tabs>
-      <IconButton
-        style={{ height: 30, width: 30 }}
-        onClick={() => setOpen(true)}
-      >
-        <SettingsOutlined />
-      </IconButton>
-
-      <SettingDrawer open={open} handleClick={() => setOpen(false)} />
     </Grid2>
   );
 };
+
 export default Header;

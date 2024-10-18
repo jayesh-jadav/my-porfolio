@@ -7,7 +7,7 @@ import { ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { persistor, store } from "./Redux/Store/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
-import Theme from "./Utils/theme";
+import Theme from "./Config/theme";
 
 const RootApp = () => {
   const theme = Theme(); // Use the custom hook to get the dynamic theme
