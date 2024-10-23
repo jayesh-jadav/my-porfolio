@@ -24,8 +24,8 @@ const useStyles = makeStyles(() => ({
       borderBottom: `2px solid ${colors.secondary}`,
       borderRadius: "15px",
       transform: "scale(0) translateY(50px)",
-      opacity: 0,
       transition: "transform 0.5s ease, opacity 0.5s ease",
+      opacity: 0,
     },
     "&:hover::after": {
       transform: "scale(1) translateY(0)",

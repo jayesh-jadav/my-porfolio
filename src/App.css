@@ -10,6 +10,24 @@
 .main {
   min-height: 100vh;
 }
+@font-face {
+  font-family: "EuropaRegular";
+  src: local("Europa-Regular"),
+    url("./Assets/Fonts/Europa-Regular.ttf") format("truetype");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "EuropaBold";
+  src: local("Europa-Bold"),
+    url("./Assets/Fonts/Europa-Bold.ttf") format("truetype");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "EuropaLight";
+  src: local("Europa-Light"),
+    url("./Assets/Fonts/Europa-Light.woff2.ttf") format("truetype");
+  font-weight: 900;
+}
 .App {
   text-align: center;
 }

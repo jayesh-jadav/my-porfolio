@@ -5,20 +5,21 @@ import {
   Typography,
   Drawer,
   IconButton,
+  Box,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Menu } from "@mui/icons-material"; // Import Menu icon for the drawer toggle
+import { Close, Menu } from "@mui/icons-material";
 import useStyles from "./styles";
 import { colors } from "../../Config/theme";
 
 const Header = () => {
   const [value, setValue] = useState(0);
-  const [drawerOpen, setDrawerOpen] = useState(false); // State for Drawer open/close
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const classes = useStyles();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    setDrawerOpen(false); // Close the drawer when a tab is clicked
+    setDrawerOpen(false);
   };
 
   const toggleDrawer = (open) => (event) => {
@@ -37,7 +38,6 @@ const Header = () => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        padding: 30,
       }}
     >
       <Typography
@@ -52,6 +52,7 @@ const Header = () => {
           WebkitBackgroundClip: "text",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          WebkitTextStroke: `1.5px ${colors.secondary}`,
         }}
       >
         Jayesh Jadav
@@ -60,25 +61,53 @@ const Header = () => {
       {/* Icon Button for Mobile Menu */}
       <IconButton
         onClick={toggleDrawer(true)}
-        sx={{ display: { xs: "block", md: "none" } }} // Show only on mobile
+        sx={{
+          display: {
+            xs: "block",
+            md: "none",
+            color: colors.white,
+            transition: "1s",
+          },
+        }}
       >
         <Menu />
       </IconButton>
 
       {/* Drawer for Mobile */}
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          classes={{ indicator: classes.indicator }}
-          orientation="vertical"
-          sx={{ width: 250 }}
+      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <Box
+          sx={{
+            backgroundColor: colors.background,
+            height: "100%",
+            paddingTop: "30px",
+          }}
         >
-          <Tab label="Home" className={classes.tab} />
-          <Tab label="About" className={classes.tab} />
-          <Tab label="Services" className={classes.tab} />
-          <Tab label="Contact" className={classes.tab} />
-        </Tabs>
+          <IconButton
+            sx={{
+              display: {
+                color: colors.white,
+                position: "absolute",
+                top: 0,
+                left: 0,
+              },
+            }}
+            onClick={toggleDrawer(false)}
+          >
+            <Close />
+          </IconButton>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            classes={{ indicator: classes.indicator }}
+            orientation="vertical"
+            sx={{ width: 250 }}
+          >
+            <Tab label="Home" className={classes.tab} />
+            <Tab label="About" className={classes.tab} />
+            <Tab label="Services" className={classes.tab} />
+            <Tab label="Contact" className={classes.tab} />
+          </Tabs>
+        </Box>
       </Drawer>
 
       {/* Desktop Tabs */}

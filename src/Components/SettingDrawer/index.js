@@ -7,8 +7,7 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { color } from "../../Utils/theme";
+import React, { useState } from "react";
 import ThemeCard from "../ThemeCard";
 
 const SettingDrawer = (props) => {
@@ -30,22 +29,7 @@ const SettingDrawer = (props) => {
         <Grid2 style={{ marginTop: 20 }}>
           <Typography>Mode</Typography>
         </Grid2>
-        <Grid2>
-          {color?.map((item, index) => {
-            return (
-              <FormControlLabel
-                key={index}
-                control={
-                  <Switch
-                    checked={checked === index}
-                    onChange={() => handleChange(item, index)}
-                  />
-                }
-                label={item?.name}
-              />
-            );
-          })}
-        </Grid2>
+        <Grid2></Grid2>
         <ThemeCard />
       </Box>
     </Drawer>
