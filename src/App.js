@@ -9,29 +9,74 @@ import Resume from "./Components/Resume";
 import Skills from "./Components/Skills";
 import Projects from "./Components/Projects";
 import About from "./Components/About";
+import { useEffect, useState } from "react";
 
 function App() {
   const { newTheme } = useSelector((state) => state.auth);
+  const [activeSection, setActiveSection] = useState("home");
+
+  // Handle smooth scrolling to the clicked section
+  const handleScrollToSection = (event, newValue) => {
+    const section = document.getElementById(newValue);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(newValue); // Update active section on click
+    }
+  };
+
+  // Track the active section while scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        "home",
+        "about",
+        "project",
+        "skills",
+        "resume",
+        "contact",
+      ];
+      const offset = 150; // Offset to trigger active section a bit earlier
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (
+          section &&
+          section.getBoundingClientRect().top < offset &&
+          section.getBoundingClientRect().bottom > 0
+        ) {
+          setActiveSection(id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div
       className="main"
       style={{
         backgroundColor: colors.background,
-        paddingRight: 30,
-        paddingLeft: 30,
         paddingTop: 20,
       }}
     >
       <header
         style={{
-          top: 20,
+          top: 0,
           marginBottom: 10,
           position: "sticky",
           backgroundColor: colors.background,
+          zIndex: 1000,
+          // boxShadow: colors.shadow,
         }}
       >
-        <Header />
+        <Header
+          value={activeSection}
+          handleChange={(event, newValue) =>
+            handleScrollToSection(event, newValue)
+          }
+        />
       </header>
       <section id="home">
         <Home />

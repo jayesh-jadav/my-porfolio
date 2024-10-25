@@ -12,15 +12,10 @@ import { Close, Menu } from "@mui/icons-material";
 import useStyles from "./styles";
 import { colors } from "../../Config/theme";
 
-const Header = () => {
-  const [value, setValue] = useState(0);
+const Header = (props) => {
+  const { value = "home", handleChange = () => null } = props;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const classes = useStyles();
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    setDrawerOpen(false);
-  };
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -38,6 +33,7 @@ const Header = () => {
       style={{
         display: "flex",
         justifyContent: "space-between",
+        padding: "0px 7rem 0px 7rem",
       }}
     >
       <Typography
@@ -97,15 +93,15 @@ const Header = () => {
           </IconButton>
           <Tabs
             value={value}
-            onChange={handleChange}
+            onChange={(event, newValue) => handleChange(event, newValue)}
             classes={{ indicator: classes.indicator }}
             orientation="vertical"
             sx={{ width: 250 }}
           >
-            <Tab label="Home" className={classes.tab} />
-            <Tab label="About" className={classes.tab} />
-            <Tab label="Services" className={classes.tab} />
-            <Tab label="Contact" className={classes.tab} />
+            <Tab value={"home"} label="Home" className={classes.tab} />
+            <Tab value={"about"} label="About" className={classes.tab} />
+            <Tab value={"projects"} label="Projects" className={classes.tab} />
+            <Tab value={"contact"} label="Contact" className={classes.tab} />
           </Tabs>
         </Box>
       </Drawer>
@@ -113,14 +109,14 @@ const Header = () => {
       {/* Desktop Tabs */}
       <Tabs
         value={value}
-        onChange={handleChange}
+        onChange={(event, newValue) => handleChange(event, newValue)}
         classes={{ indicator: classes.indicator }}
         sx={{ display: { xs: "none", md: "flex" } }}
       >
-        <Tab label="Home" className={classes.tab} />
-        <Tab label="About" className={classes.tab} />
-        <Tab label="Services" className={classes.tab} />
-        <Tab label="Contact" className={classes.tab} />
+        <Tab value={"home"} label="Home" className={classes.tab} />
+        <Tab value={"about"} label="About" className={classes.tab} />
+        <Tab value={"services"} label="Services" className={classes.tab} />
+        <Tab value={"contact"} label="Contact" className={classes.tab} />
       </Tabs>
     </Grid2>
   );

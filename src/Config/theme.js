@@ -12,6 +12,10 @@ export const colors = {
   white: "#FFFFFF", // Pure white for contrast
   gradient: "linear-gradient(45deg, #00FF9F, #1E90FF)", // Neon green to blue gradient
   transparent: "#ffffff00",
+  inGradient:
+    "linear-gradient(45deg, #F58529, #FEDA77, #DD2A7B, #8134AF, #515BD4",
+  chipShadow: "0px 0px 5px 0px rgba(199,199,199,0.79)",
+  shadow: "-2px 13px 23px -7px rgba(69,59,59,0.84)",
 };
 let theme = createTheme();
 theme = createTheme(theme, {
