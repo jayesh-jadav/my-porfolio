@@ -10,7 +10,11 @@ const ThemeCard = (props) => {
 
   const styles = useStyles({ newTheme });
   return (
-    <Grid2 className={styles.main} style={{ backgroundColor: colors?.primary }}>
+    <Grid2
+      item
+      className={styles.main}
+      style={{ backgroundColor: colors?.primary }}
+    >
       <Typography>{title}</Typography>
     </Grid2>
   );

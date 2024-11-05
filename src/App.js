@@ -10,6 +10,7 @@ import Skills from "./Components/Skills";
 import Projects from "./Components/Projects";
 import About from "./Components/About";
 import { useEffect, useState } from "react";
+import Services from "./Components/Services";
 
 function App() {
   const { newTheme } = useSelector((state) => state.auth);
@@ -30,7 +31,7 @@ function App() {
       const sections = [
         "home",
         "about",
-        "project",
+        "services",
         "skills",
         "resume",
         "contact",
@@ -48,7 +49,6 @@ function App() {
         }
       });
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -59,6 +59,7 @@ function App() {
       style={{
         backgroundColor: colors.background,
         paddingTop: 20,
+        position: "relative",
       }}
     >
       <header
@@ -84,6 +85,9 @@ function App() {
       <section id="about">
         <About />
       </section>
+      <section id="services">
+        <Services />
+      </section>
       <section id="project">
         <Projects />
       </section>
@@ -97,7 +101,11 @@ function App() {
         <Contact />
       </section>
       <footer>
-        <Footer />
+        <Footer
+          handleScrollToSection={(event) => {
+            handleScrollToSection(event, "home");
+          }}
+        />
       </footer>
     </div>
   );

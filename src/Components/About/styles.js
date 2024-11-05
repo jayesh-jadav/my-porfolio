@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "nowrap !important",
     gap: "100px !important",
     padding: "0px 7rem 0px 7rem",
-    backgroundColor: colors.surface,
+    // backgroundColor: colors.surface,
   },
   borderWrapper: {
     display: "inline-block",

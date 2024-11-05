@@ -100,7 +100,7 @@ const Header = (props) => {
           >
             <Tab value={"home"} label="Home" className={classes.tab} />
             <Tab value={"about"} label="About" className={classes.tab} />
-            <Tab value={"projects"} label="Projects" className={classes.tab} />
+            <Tab value={"services"} label="Services" className={classes.tab} />
             <Tab value={"contact"} label="Contact" className={classes.tab} />
           </Tabs>
         </Box>
