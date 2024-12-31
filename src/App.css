@@ -10,7 +10,12 @@
 .main {
   min-height: 100vh;
 }
-@font-face {
+.maxContainer {
+  max-width: 1600px;
+  display: flex;
+  justify-content: center;
+}
+/* @font-face {
   font-family: "EuropaRegular";
   src: local("Europa-Regular"),
     url("./Assets/Fonts/Europa-Regular.ttf") format("truetype");
@@ -26,6 +31,11 @@
   font-family: "EuropaLight";
   src: local("Europa-Light"),
     url("./Assets/Fonts/Europa-Light.woff2.ttf") format("truetype");
+  font-weight: 900;
+} */
+@font-face {
+  font-family: "Minion";
+  src: local("Minion"), url("./Assets/Fonts/Minion.otf") format("truetype");
   font-weight: 900;
 }
 .App {

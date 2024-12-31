@@ -1,37 +1,92 @@
-import { Grid2, IconButton, Typography } from "@mui/material";
+import { Divider, IconButton, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import React from "react";
 import { colors } from "../../Config/theme";
-import { ArrowUpward } from "@mui/icons-material";
+import {
+  ArrowUpward,
+  Facebook,
+  Instagram,
+  LinkedIn,
+} from "@mui/icons-material";
+import XIcon from "@mui/icons-material/X";
+import Images from "../../Config/images";
+import useStyles from "./styles";
 
 function Footer(props) {
-  const { handleScrollToSection = () => null, activeSection = "home" } = props;
+  const { handleScrollToSection = () => null } = props;
+  const classes = useStyles();
+
   return (
-    <Grid2
+    <Grid
       container
       style={{
-        justifyContent: "space-between",
+        padding: "20px 0px",
+        backgroundColor: colors.primary,
         alignItems: "center",
-        padding: "0px 7rem 3rem 7rem",
+        flexDirection: "column",
       }}
     >
-      <Typography
-        variant="h1"
-        style={{ color: colors.white, textAlign: "center" }}
-      >
-        Footer
-      </Typography>
-      <IconButton
-        onClick={(event) => handleScrollToSection(event, "home")}
-        style={{
-          backgroundColor: colors.secondary,
-          transition: "0.5s",
-          height: 50,
-          width: 50,
-        }}
-      >
-        <ArrowUpward />
-      </IconButton>
-    </Grid2>
+      <Grid size={{ xs: 11, md: 10 }}>
+        <Grid
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <img src={Images.mainLogo} alt="mainLogo" />
+          <IconButton
+            onClick={(event) => handleScrollToSection(event, "home")}
+            className={classes.arrow}
+          >
+            <ArrowUpward />
+          </IconButton>
+        </Grid>
+        <Divider style={{ margin: "20px 0px", backgroundColor: "#f5f5f5" }} />
+        <Grid
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            style={{ color: colors.white, fontSize: 16, fontWeight: 700 }}
+          >
+            Copyright © 2024 All rights reserved
+          </Typography>
+          <Grid className={classes.socialContainer}>
+            <div className={classes.iconButton}>
+              <Instagram className={classes.socialIcon} />
+              <Typography variant="subTitle" className={classes.socialText}>
+                Instagram
+              </Typography>
+            </div>
+            <div className={classes.iconButton}>
+              <Facebook className={classes.socialIcon} />
+              <Typography variant="subTitle" className={classes.socialText}>
+                Facebook
+              </Typography>
+            </div>
+            <div className={classes.iconButton}>
+              <LinkedIn className={classes.socialIcon} />
+              <Typography variant="subTitle" className={classes.socialText}>
+                Inked In
+              </Typography>
+            </div>
+            <div className={classes.iconButton}>
+              <XIcon
+                // style={{ backgroundColor: "#1D1D1D" }}
+                className={classes.socialIcon}
+              />
+              <Typography variant="subTitle" className={classes.socialText}>
+                Twitter
+              </Typography>
+            </div>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 

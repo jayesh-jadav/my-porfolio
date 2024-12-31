@@ -58,18 +58,15 @@ function App() {
       className="main"
       style={{
         backgroundColor: colors.background,
-        paddingTop: 20,
         position: "relative",
       }}
     >
       <header
         style={{
           top: 0,
-          marginBottom: 10,
           position: "sticky",
-          backgroundColor: colors.background,
+          backgroundColor: colors.primary,
           zIndex: 1000,
-          // boxShadow: colors.shadow,
         }}
       >
         <Header
@@ -79,32 +76,35 @@ function App() {
           }
         />
       </header>
-      <section id="home">
-        <Home />
-      </section>
-      <section id="about">
-        <About />
-      </section>
-      <section id="services">
-        <Services />
-      </section>
-      <section id="project">
-        <Projects />
-      </section>
-      <section id="skills">
-        <Skills />
-      </section>
-      <section id="resume">
-        <Resume />
-      </section>
-      <section id="contact">
-        <Contact />
-      </section>
+      <main className="main">
+        <section id="home">
+          <Home />
+        </section>
+        <section id="about">
+          <About />
+        </section>
+        <section id="services">
+          <Services />
+        </section>
+        <section id="project">
+          <Projects />
+        </section>
+        <section id="skills">
+          <Skills />
+        </section>
+        <section id="resume">
+          <Resume />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </main>
       <footer>
         <Footer
           handleScrollToSection={(event) => {
             handleScrollToSection(event, "home");
           }}
+          className="maxContainer"
         />
       </footer>
     </div>

@@ -1,15 +1,17 @@
 import { createTheme } from "@mui/material";
 
 export const colors = {
-  primary: "#0F0F0F", // Jet black for the main background and primary sections
+  primary: "#005653", // Jet black for the main background and primary sections
+  black: "#0a0a0a",
+  hoverColor: "#007b7b",
   secondary: "#00FF9F", // Neon green for secondary buttons and highlights
   accent: "#1E90FF", // Bright blue for action buttons and interactive elements
-  background: "#141414", // Dark gray for general background
+  background: "white", // Dark gray for general background
   surface: "#232323", // Slightly lighter gray for surfaces like cards
   text: "#E0E0E0", // Off-white for readable text
   textSecondary: "#9E9E9E", // Light gray for secondary text
   error: "#FF4C4C", // Vivid red for error messages
-  white: "#FFFFFF", // Pure white for contrast
+  white: "white", // Pure white for contrast
   gradient: "linear-gradient(45deg, #00FF9F, #1E90FF)", // Neon green to blue gradient
   transparent: "#ffffff00",
   inGradient:
@@ -17,8 +19,24 @@ export const colors = {
   chipShadow: "0px 0px 5px 0px rgba(199,199,199,0.79)",
   shadow: "-2px 13px 23px -7px rgba(69,59,59,0.84)",
 };
+
+export const FontFamily = {
+  Regular: "EuropaRegular !important",
+  Bold: "EuropaBold !important",
+};
+const EuropaRegular = {
+  fontFamily: FontFamily.Regular,
+  fontStyle: "normal",
+  fontDisplay: "swap",
+  src: "url('../Assets/Fonts/Europa-Regular.ttf') format('ttf')",
+};
 let theme = createTheme();
 theme = createTheme(theme, {
+  MuiCssBaseline: {
+    "@global": {
+      "@font-face": [EuropaRegular],
+    },
+  },
   palette: {
     primary: {
       main: colors.primary,

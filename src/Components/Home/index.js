@@ -6,7 +6,6 @@ import Typewriter from "../TypeWriter";
 import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 import Images from "../../Config/images";
 import XIcon from "@mui/icons-material/X";
-import DraggableCardList from "../DraggableCardList";
 
 const Home = () => {
   const className = useStyles();
@@ -76,12 +75,11 @@ const Home = () => {
           </div>
         </Grid2>
       </Grid2>
-      {/* <Grid2 item xs={4}>
+      <Grid2 item xs={4}>
         <div className={className.borderWrapper}>
-          <Avatar className={className.img} />
+          <Avatar src={Images.profile} className={className.img} />
         </div>
-      </Grid2> */}
-      <DraggableCardList />
+      </Grid2>
     </Grid2>
   );
 };

@@ -1,16 +1,10 @@
-import {
-  Grid2,
-  Tab,
-  Tabs,
-  Typography,
-  Drawer,
-  IconButton,
-  Box,
-} from "@mui/material";
+import { Tab, Tabs, Drawer, IconButton, Box } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import React, { useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
 import useStyles from "./styles";
 import { colors } from "../../Config/theme";
+import Images from "../../Config/images";
 
 const Header = (props) => {
   const { value = "home", handleChange = () => null } = props;
@@ -28,97 +22,97 @@ const Header = (props) => {
   };
 
   return (
-    <Grid2
+    <Grid
       container
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "0px 7rem 0px 7rem",
+        justifyContent: "center",
+        padding: "10px 0px",
+        backgroundColor: colors.primary,
       }}
     >
-      <Typography
+      <Grid
+        size={{ xs: 11, md: 10 }}
         style={{
-          color: "transparent",
-          WebkitTextFillColor: "transparent",
-          fontSize: 30,
-          fontWeight: "bold",
-          backgroundImage: colors.gradient,
-          backgroundSize: "cover",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          WebkitTextStroke: `1.5px ${colors.secondary}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
-        Jayesh Jadav
-      </Typography>
-
-      {/* Icon Button for Mobile Menu */}
-      <IconButton
-        onClick={toggleDrawer(true)}
-        sx={{
-          display: {
-            xs: "block",
-            md: "none",
-            color: colors.white,
-            transition: "1s",
-          },
-        }}
-      >
-        <Menu />
-      </IconButton>
-
-      {/* Drawer for Mobile */}
-      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Box
+        <img
+          src={Images.mainLogo}
+          className={classes.mainLogo}
+          alt="mainLogo"
+        />
+        {/* Icon Button for Mobile Menu */}
+        <IconButton
+          onClick={toggleDrawer(true)}
           sx={{
-            backgroundColor: colors.background,
-            height: "100%",
-            paddingTop: "30px",
+            display: {
+              xs: "block",
+              md: "none",
+              color: colors.white,
+              transition: "1s",
+            },
           }}
         >
-          <IconButton
-            sx={{
-              display: {
-                color: colors.white,
-                position: "absolute",
-                top: 0,
-                left: 0,
-              },
-            }}
-            onClick={toggleDrawer(false)}
-          >
-            <Close />
-          </IconButton>
-          <Tabs
-            value={value}
-            onChange={(event, newValue) => handleChange(event, newValue)}
-            classes={{ indicator: classes.indicator }}
-            orientation="vertical"
-            sx={{ width: 250 }}
-          >
-            <Tab value={"home"} label="Home" className={classes.tab} />
-            <Tab value={"about"} label="About" className={classes.tab} />
-            <Tab value={"services"} label="Services" className={classes.tab} />
-            <Tab value={"contact"} label="Contact" className={classes.tab} />
-          </Tabs>
-        </Box>
-      </Drawer>
+          <Menu />
+        </IconButton>
 
-      {/* Desktop Tabs */}
-      <Tabs
-        value={value}
-        onChange={(event, newValue) => handleChange(event, newValue)}
-        classes={{ indicator: classes.indicator }}
-        sx={{ display: { xs: "none", md: "flex" } }}
-      >
-        <Tab value={"home"} label="Home" className={classes.tab} />
-        <Tab value={"about"} label="About" className={classes.tab} />
-        <Tab value={"services"} label="Services" className={classes.tab} />
-        <Tab value={"contact"} label="Contact" className={classes.tab} />
-      </Tabs>
-    </Grid2>
+        {/* Drawer for Mobile */}
+        <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+          <Box
+            sx={{
+              backgroundColor: colors.background,
+              height: "100%",
+              paddingTop: "30px",
+            }}
+          >
+            <IconButton
+              sx={{
+                display: {
+                  color: colors.white,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                },
+              }}
+              onClick={toggleDrawer(false)}
+            >
+              <Close />
+            </IconButton>
+            <Tabs
+              value={value}
+              onChange={(event, newValue) => handleChange(event, newValue)}
+              classes={{ indicator: classes.indicator }}
+              orientation="vertical"
+              sx={{ width: 250 }}
+            >
+              <Tab value={"home"} label="Home" className={classes.tab} />
+              <Tab value={"about"} label="About" className={classes.tab} />
+              <Tab
+                value={"services"}
+                label="Services"
+                className={classes.tab}
+              />
+              <Tab value={"contact"} label="Contact" className={classes.tab} />
+            </Tabs>
+          </Box>
+        </Drawer>
+
+        {/* Desktop Tabs */}
+        <Tabs
+          value={value}
+          onChange={(event, newValue) => handleChange(event, newValue)}
+          classes={{ indicator: classes.indicator }}
+          sx={{ display: { xs: "none", md: "flex" } }}
+        >
+          <Tab value={"home"} label="Home" className={classes.tab} />
+          <Tab value={"about"} label="About" className={classes.tab} />
+          <Tab value={"services"} label="Services" className={classes.tab} />
+          <Tab value={"contact"} label="Contact" className={classes.tab} />
+        </Tabs>
+      </Grid>
+    </Grid>
   );
 };
 
