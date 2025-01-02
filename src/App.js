@@ -55,7 +55,6 @@ function App() {
 
   return (
     <div
-      className="main"
       style={{
         backgroundColor: colors.background,
         position: "relative",
@@ -71,17 +70,28 @@ function App() {
       >
         <Header
           value={activeSection}
-          handleChange={(event, newValue) =>
-            handleScrollToSection(event, newValue)
-          }
+          handleChange={(event, newValue) => {
+            handleScrollToSection(event, newValue);
+          }}
         />
       </header>
       <main className="main">
         <section id="home">
           <Home />
         </section>
+
+        <section id="contact">
+          <Contact />
+        </section>
+        {/* <section id="home">
+          <Home />
+        </section>
         <section id="about">
-          <About />
+          <About
+            handleChange={(event) => {
+              handleScrollToSection("", event);
+            }}
+          />
         </section>
         <section id="services">
           <Services />
@@ -97,14 +107,13 @@ function App() {
         </section>
         <section id="contact">
           <Contact />
-        </section>
+        </section> */}
       </main>
       <footer>
         <Footer
           handleScrollToSection={(event) => {
             handleScrollToSection(event, "home");
           }}
-          className="maxContainer"
         />
       </footer>
     </div>

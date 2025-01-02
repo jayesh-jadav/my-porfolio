@@ -7,15 +7,15 @@ const useStyles = makeStyles(() => ({
     fontSize: "1.1em",
     color: `${colors.white} !important`,
     textDecoration: "none",
-    padding: "6px 20px",
+    padding: "4px 20px !important",
     transition: "color 0.5s ease",
     zIndex: 1,
-    fontWeight: "500 !important",
+    fontWeight: "700 !important",
 
     "&::after": {
       content: '""',
       position: "absolute",
-      top: -5,
+      top: -8,
       width: "100%",
       height: "100%",
       zIndex: 1,
@@ -29,12 +29,12 @@ const useStyles = makeStyles(() => ({
       transform: "scale(1) translateY(0)",
       opacity: 1,
     },
-    "&.Mui-selected": {
-      "&::after": {
-        transform: "scale(1) translateY(0)",
-        opacity: 1,
-      },
-    },
+    // "&.Mui-selected": {
+    //   "&::after": {
+    //     transform: "scale(1) translateY(0)",
+    //     opacity: 1,
+    //   },
+    // },
   },
   indicator: {
     display: "none",

@@ -1,36 +1,55 @@
 import React from "react";
 import useStyles from "./styles";
-import { Avatar, Grid2, Typography } from "@mui/material";
+import {
+  Button,
+  Grid2,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { colors } from "../../Config/theme";
-import Typewriter from "../TypeWriter";
 
-function About() {
+function About(props) {
+  const { handleChange } = props;
   const className = useStyles();
   return (
     <Grid2 container className={className.container}>
-      <Grid2 item size={4} className={className.borderWrapper}>
+      {/* <Grid2 item size={4} className={className.borderWrapper}>
         <Avatar className={className.img} />
-        {/* <img src={Images.profile} className={className.img} /> */}
-      </Grid2>
+        <img src={Images.profile} className={className.img} />
+      </Grid2> */}
       <Grid2 item size={8}>
-        <Typography variant="h1" style={{ color: colors.white, height: 80 }}>
-          <Typewriter text={"About Me"} delay={100} infinite={true} />
+        <Typography variant="h1" gutterBottom>
+          Hi, I'm <span style={{ color: colors.primary }}>Jayesh Jadav</span> 👋
         </Typography>
-        <Typography
-          variant="h3"
-          style={{
-            color: colors.transparent,
-            WebkitTextStroke: `0.8px ${colors.secondary}`,
-          }}
+        <Typography variant="subText" style={{ marginBottom: "1rem" }}>
+          I’m a frontend developer specializing in React, JavaScript, and
+          creating user-friendly web applications. Passionate about technology
+          and always eager to learn.
+        </Typography>
+        <div>
+          <Typography variant="title">Skills:</Typography>
+          <List sx={{ width: "100%" }}>
+            <ListItem>
+              <ListItemText>React, JavaScript, Redux</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>HTML, CSS, Material-UI</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Firebase, Redux Toolkit</ListItemText>
+            </ListItem>
+          </List>
+        </div>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginTop: "1rem" }}
+          onClick={() => handleChange("contact")}
         >
-          Frontend Developer
-        </Typography>
-        <Typography variant="title" style={{ color: colors.white }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </Typography>
+          Let’s Collaborate
+        </Button>
       </Grid2>
     </Grid2>
   );

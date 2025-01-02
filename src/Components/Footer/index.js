@@ -9,8 +9,8 @@ import {
   LinkedIn,
 } from "@mui/icons-material";
 import XIcon from "@mui/icons-material/X";
-import Images from "../../Config/images";
 import useStyles from "./styles";
+import MainLogo from "../MainLogo";
 
 function Footer(props) {
   const { handleScrollToSection = () => null } = props;
@@ -34,7 +34,7 @@ function Footer(props) {
             justifyContent: "space-between",
           }}
         >
-          <img src={Images.mainLogo} alt="mainLogo" />
+          <MainLogo />
           <IconButton
             onClick={(event) => handleScrollToSection(event, "home")}
             className={classes.arrow}
@@ -42,7 +42,9 @@ function Footer(props) {
             <ArrowUpward />
           </IconButton>
         </Grid>
-        <Divider style={{ margin: "20px 0px", backgroundColor: "#f5f5f5" }} />
+        <Divider
+          style={{ margin: "20px 0px", backgroundColor: colors.textSecondary }}
+        />
         <Grid
           style={{
             display: "flex",

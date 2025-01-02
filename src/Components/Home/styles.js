@@ -3,12 +3,22 @@ import { colors } from "../../Config/theme";
 
 const useStyles = makeStyles(() => ({
   container: {
-    height: "90vh",
-    display: "flex !important",
+    paddingTop: 50,
+    display: "flex",
+    justifyContent: "center",
     alignItems: "center",
-    flexWrap: "nowrap !important",
-    gap: "100px !important",
-    padding: "0px 7rem 0px 7rem",
+  },
+  section: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 50,
+    "@media (max-width:900px)": {
+      flexWrap: "wrap",
+      alignItems: "center",
+      flexDirection: "column-reverse",
+      textAlign: "center",
+    },
   },
   borderWrapper: {
     display: "inline-block",
@@ -24,26 +34,36 @@ const useStyles = makeStyles(() => ({
       right: 0,
       bottom: 0,
       borderRadius: "50%",
-      borderBottom: "10px dashed red",
-      borderTop: "10px dashed green",
-      backgroundSize: "300% 300%",
-      transform: "rotate(0deg)",
-      animation: "$rotateBorder 5s linear 2s infinite",
+      boxShadow: `0px 0px 30px 10px ${colors.primary}`,
+      animation: "$rotateShadowEffect 5s linear infinite",
       zIndex: -1,
     },
   },
   img: {
     borderRadius: "50%",
-    height: "400px !important", // Adjust the size as per your requirement
-    width: "400px !important",
+    minHeight: "400px", // Adjust the size as per your requirement
+    minWidth: "400px",
     display: "block",
+    "@media (max-width:900px)": {
+      minHeight: "40vw", // Adjust the size as per your requirement
+      minWidth: "40vw",
+    },
   },
-  "@keyframes rotateBorder": {
+  "@keyframes rotateShadowEffect": {
     "0%": {
-      transform: "rotate(0deg)", // Initial state
+      boxShadow: `10px 0px 30px 10px ${colors.primary}`,
+    },
+    "25%": {
+      boxShadow: `0px 10px 30px 10px ${colors.primary}`,
+    },
+    "50%": {
+      boxShadow: `-10px 0px 30px 10px ${colors.primary}`,
+    },
+    "75%": {
+      boxShadow: `0px -10px 30px 10px ${colors.primary}`,
     },
     "100%": {
-      transform: "rotate(360deg)", // Final state for full rotation
+      boxShadow: `10px 0px 30px 10px ${colors.primary}`,
     },
   },
 
@@ -51,6 +71,10 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     gap: 30,
     marginTop: 20,
+    "@media (max-width:900px)": {
+      justifyContent: "center",
+      gap: 10,
+    },
   },
   iconButton: {
     display: "flex",
@@ -59,27 +83,29 @@ const useStyles = makeStyles(() => ({
     width: 40,
     borderRadius: "50px",
     color: colors.white,
-    transition: "all 0.3s ease-out !important",
+    fontWeight: 700,
+    backgroundColor: colors.primary,
+    transition: "all 0.5s ease-out !important",
     boxShadow: colors.chipShadow,
     overflow: "hidden",
     "&:hover": {
-      width: "200px !important",
+      width: "150px !important",
       "& $socialText": {
         display: "block",
+        fontSize: 14,
       },
-      // "&:nth-child(1) $socialIcon": {
-      //   backgroundColor: "red !important",
-      // },
-      // "&:nth-child(2) $socialIcon": {
-      //   backgroundColor: colors,
-      // },
-      // "&:nth-child(3) $socialIcon": {
-      //   backgroundColor: "blue",
-      // },
+    },
+    "@media (hover: none)": {
+      "&:hover": {
+        width: "40px !important", // Keep original size
+        "& $socialText": {
+          display: "none", // Hide text on touch devices
+        },
+      },
     },
   },
   socialIcon: {
-    transition: "linear 0.3s !important",
+    transition: "linear 0.5s !important",
     float: "left",
     margin: 5,
     borderRadius: 50,
@@ -87,6 +113,8 @@ const useStyles = makeStyles(() => ({
     height: "30px !important",
     width: "30px !important",
     alignItem: "center",
+    color: colors.white,
+    // backgroundColor: `${colors.white}`,
   },
   socialText: {
     display: "none",

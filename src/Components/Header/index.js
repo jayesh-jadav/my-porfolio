@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
 import useStyles from "./styles";
 import { colors } from "../../Config/theme";
-import Images from "../../Config/images";
+import MainLogo from "../MainLogo";
 
 const Header = (props) => {
   const { value = "home", handleChange = () => null } = props;
@@ -38,11 +38,28 @@ const Header = (props) => {
           justifyContent: "space-between",
         }}
       >
-        <img
-          src={Images.mainLogo}
-          className={classes.mainLogo}
-          alt="mainLogo"
-        />
+        <IconButton>
+          <MainLogo />
+        </IconButton>
+        <Grid
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 30,
+          }}
+        >
+          <Tabs
+            value={value}
+            onChange={(event, newValue) => handleChange(event, newValue)}
+            classes={{ indicator: classes.indicator }}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          >
+            <Tab value={"home"} label="Home" className={classes.tab} />
+            <Tab value={"about"} label="About" className={classes.tab} />
+            <Tab value={"services"} label="Services" className={classes.tab} />
+            <Tab value={"contact"} label="Contact" className={classes.tab} />
+          </Tabs>
+        </Grid>
         {/* Icon Button for Mobile Menu */}
         <IconButton
           onClick={toggleDrawer(true)}
@@ -98,19 +115,6 @@ const Header = (props) => {
             </Tabs>
           </Box>
         </Drawer>
-
-        {/* Desktop Tabs */}
-        <Tabs
-          value={value}
-          onChange={(event, newValue) => handleChange(event, newValue)}
-          classes={{ indicator: classes.indicator }}
-          sx={{ display: { xs: "none", md: "flex" } }}
-        >
-          <Tab value={"home"} label="Home" className={classes.tab} />
-          <Tab value={"about"} label="About" className={classes.tab} />
-          <Tab value={"services"} label="Services" className={classes.tab} />
-          <Tab value={"contact"} label="Contact" className={classes.tab} />
-        </Tabs>
       </Grid>
     </Grid>
   );
