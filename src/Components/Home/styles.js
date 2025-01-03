@@ -71,7 +71,7 @@ const useStyles = makeStyles(() => ({
   },
   socialContainer: {
     display: "flex",
-    gap: 30,
+    gap: 20,
     marginTop: 5,
     "@media (max-width:900px)": {
       justifyContent: "center",
@@ -112,8 +112,8 @@ const useStyles = makeStyles(() => ({
     margin: 5,
     borderRadius: 50,
     padding: 5,
-    height: "30px !important",
-    width: "30px !important",
+    height: "20px !important",
+    width: "20px !important",
     alignItem: "center",
     color: colors.white,
   },
@@ -127,12 +127,6 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
     gap: 20,
-  },
-  card: {
-    // padding: 10,
-    // borderRadius: 12,
-    // boxShadow: colors.shadow,
-    // textAlign: "center",
   },
 }));
 
