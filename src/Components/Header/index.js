@@ -53,7 +53,7 @@ const Header = (props) => {
             sx={{ display: { xs: "none", md: "flex" } }}
           >
             <Tab value={"home"} label="Home" className={classes.tab} />
-            <Tab value={"about"} label="About" className={classes.tab} />
+            <Tab value={"skills"} label="Skills" className={classes.tab} />
             <Tab value={"services"} label="Services" className={classes.tab} />
             <Tab value={"contact"} label="Contact" className={classes.tab} />
           </Tabs>

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { styled } from "@mui/material/styles";
+import { colors } from "../../Config/theme";
+import useStyles from "./styles";
 
 // Custom styles for the CircularProgress container
 const CircularContainer = styled(Box)(({ theme }) => ({
@@ -29,6 +32,7 @@ function Skills() {
   const [progress, setProgress] = useState(
     skills.map(() => 0) // Initialize progress for each skill at 0
   );
+  const className = useStyles();
 
   useEffect(() => {
     const handleScroll = (entries) => {
@@ -67,61 +71,62 @@ function Skills() {
   }, [visible]);
 
   return (
-    <Box id="skills" sx={{ py: 5, textAlign: "center" }}>
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
-        Skills
-      </Typography>
-      <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-        A showcase of my proficiency levels
-      </Typography>
-
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ mt: 4 }}
-      >
-        {skills.map((skill, index) => (
-          <Box key={index} sx={{ textAlign: "center", mx: 2, my: 2 }}>
-            <CircularContainer>
-              <CircularProgress
-                variant="determinate"
-                value={progress[index]}
-                size={80}
-                thickness={6}
-                sx={{
-                  color: skill.color,
-                  transform: "rotate(-90deg) !important",
-                }}
-              />
-              <CircularProgress
-                variant="determinate"
-                value={100}
-                size={80}
-                thickness={6}
-                sx={{
-                  color: "rgba(0, 0, 0, 0.1)", // Light gray background
-                  position: "absolute",
-                }}
-              />
-              <CircularText
-                variant="h6"
-                color={progress[index] < 0 ? "error" : "textPrimary"}
-              >
-                {progress[index]}%
-              </CircularText>
-            </CircularContainer>
-            <Typography variant="h6" fontWeight="bold">
-              {skill.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </Typography>
-          </Box>
-        ))}
-      </Box>
-    </Box>
+    <Grid container className={className.container}>
+      <Grid size={{ xs: 11, md: 9 }}>
+        <Grid className={className.mainHeader}>
+          <Typography variant="title" style={{ color: colors.primary }}>
+            Skills
+          </Typography>
+          <Typography variant="subTitle" color="textSecondary" gutterBottom>
+            A showcase of my proficiency levels
+          </Typography>
+        </Grid>
+        <Grid container spacing={2}>
+          {skills.map((skill, index) => (
+            <Grid
+              size={{ xs: 12, sm: 3 }}
+              key={index}
+              sx={{ textAlign: "center" }}
+            >
+              <CircularContainer>
+                <CircularProgress
+                  variant="determinate"
+                  value={progress[index]}
+                  size={80}
+                  thickness={6}
+                  sx={{
+                    color: skill.color,
+                    transform: "rotate(-90deg) !important",
+                  }}
+                />
+                <CircularProgress
+                  variant="determinate"
+                  value={100}
+                  size={80}
+                  thickness={6}
+                  sx={{
+                    color: "rgba(0, 0, 0, 0.1)", // Light gray background
+                    position: "absolute",
+                  }}
+                />
+                <CircularText
+                  variant="h6"
+                  color={progress[index] < 0 ? "error" : "textPrimary"}
+                >
+                  {progress[index]}%
+                </CircularText>
+              </CircularContainer>
+              <Typography variant="h6" fontWeight="bold">
+                {skill.name}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 

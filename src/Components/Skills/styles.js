@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.secondary,
+    // backgroundColor: colors.secondary,
   },
   mainHeader: {
     textAlign: "center",

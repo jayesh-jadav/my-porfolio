@@ -110,7 +110,7 @@ function Contact() {
             <form onSubmit={handleSubmit} noValidate>
               <Grid style={{ display: "flex", flexWrap: "wrap" }} gap={2}>
                 {/* Name Field */}
-                <Grid item size={5.8}>
+                <Grid item size={{ xs: 12, md: 5.8 }}>
                   <TextField
                     fullWidth
                     label="Name"
@@ -125,7 +125,7 @@ function Contact() {
                 </Grid>
 
                 {/* Email Field */}
-                <Grid item size={5.8}>
+                <Grid item size={{ xs: 12, md: 5.8 }}>
                   <TextField
                     fullWidth
                     label="Email"
@@ -141,7 +141,7 @@ function Contact() {
                 </Grid>
 
                 {/* Phone Field */}
-                <Grid item size={5.8}>
+                <Grid item size={{ xs: 12, md: 5.8 }}>
                   <TextField
                     fullWidth
                     label="Phone"
@@ -159,7 +159,7 @@ function Contact() {
                   />
                 </Grid>
 
-                <Grid item size={5.8}>
+                <Grid item size={{ xs: 12, md: 5.8 }}>
                   <TextField
                     fullWidth
                     label="Subject"
@@ -174,7 +174,7 @@ function Contact() {
                 </Grid>
 
                 {/* Message Field */}
-                <Grid item size={12}>
+                <Grid item size={{ xs: 12, md: 11.8 }}>
                   <TextField
                     fullWidth
                     multiline
