@@ -3,7 +3,7 @@ import { colors } from "../../Config/theme";
 
 const useStyles = makeStyles(() => ({
   container: {
-    paddingTop: 50,
+    padding: "100px 0px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -41,8 +41,8 @@ const useStyles = makeStyles(() => ({
   },
   img: {
     borderRadius: "50%",
-    minHeight: "400px", // Adjust the size as per your requirement
-    minWidth: "400px",
+    minHeight: "30vw", // Adjust the size as per your requirement
+    minWidth: "30vw",
     display: "block",
     "@media (max-width:900px)": {
       minHeight: "40vw", // Adjust the size as per your requirement
@@ -66,11 +66,13 @@ const useStyles = makeStyles(() => ({
       boxShadow: `10px 0px 30px 10px ${colors.primary}`,
     },
   },
-
+  socialMain: {
+    margin: "20px 0px",
+  },
   socialContainer: {
     display: "flex",
     gap: 30,
-    marginTop: 20,
+    marginTop: 5,
     "@media (max-width:900px)": {
       justifyContent: "center",
       gap: 10,
@@ -114,10 +116,23 @@ const useStyles = makeStyles(() => ({
     width: "30px !important",
     alignItem: "center",
     color: colors.white,
-    // backgroundColor: `${colors.white}`,
   },
   socialText: {
     display: "none",
+  },
+  subText: {
+    margin: "10px 0px",
+  },
+  workContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: 20,
+  },
+  card: {
+    // padding: 10,
+    // borderRadius: 12,
+    // boxShadow: colors.shadow,
+    // textAlign: "center",
   },
 }));
 

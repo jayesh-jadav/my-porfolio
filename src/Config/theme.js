@@ -17,7 +17,7 @@ export const colors = {
   inGradient:
     "linear-gradient(45deg, #F58529, #FEDA77, #DD2A7B, #8134AF, #515BD4",
   chipShadow: "0px 0px 5px 0px rgba(199,199,199,0.79)",
-  shadow: "-2px 13px 23px -7px rgba(69,59,59,0.84)",
+  shadow: "0px 4px 6px 2px rgba(0, 0, 0, 0.1)",
 };
 
 export const FontFamily = {
@@ -65,13 +65,14 @@ theme = createTheme(theme, {
     MuiTypography: {
       styleOverrides: {
         root: {
+          display: "block",
           transition: "0.5s",
           fontFamily: "Minion !important",
           letterSpacing: "0.6px",
           color: colors.textColor,
           overflow: "hidden",
-          whiteSpace: "wrap",
-          fontSize: 12,
+          fontWeight: 400,
+          fontSize: 14,
           "@media (max-width: 768px)": {
             fontSize: 12,
           },
@@ -127,10 +128,10 @@ theme = createTheme(theme, {
           color: colors.primary,
           transition: "500ms",
           fontFamily: `EuropaRegular !important`,
-          "&:hover": {
-            backgroundColor: colors.white,
-            color: colors.white,
-          },
+          // "&:hover": {
+          //   backgroundColor: colors.white,
+          //   color: colors.white,
+          // },
           "@media (hover: none)": {
             "&:hover": {
               backgroundColor: "transparent",
@@ -148,35 +149,35 @@ theme = createTheme(theme, {
           transition: "all 300ms ease",
           fontFamily: `Minion !important`,
           fontWeight: 700,
-          fontSize: 20,
+          fontSize: 14,
           position: "relative",
           overflow: "hidden",
-          padding: "10px 10px !important",
+          padding: "10px",
           borderRadius: 8,
           zIndex: 1,
-          "&::before": {
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+        },
+        containedPrimary: {
+          color: colors.primary,
+          backgroundColor: colors.white,
+          zIndex: 1,
+          "&::before, &::after": {
             content: '""',
             position: "absolute",
             top: 0,
-            left: 0,
-            width: "50%",
+            width: "51%",
             height: "100%",
             backgroundColor: colors.hoverColor,
-            transform: "translateX(-100%)",
             transition: "transform 300ms ease",
             zIndex: -1,
           },
+          "&::before": {
+            left: 0,
+            transform: "translateX(-102%)",
+          },
           "&::after": {
-            content: '""',
-            position: "absolute",
-            top: 0,
             right: 0,
-            width: "50%",
-            height: "100%",
-            backgroundColor: colors.hoverColor,
-            transform: "translateX(100%)",
-            transition: "transform 300ms ease",
-            zIndex: -1,
+            transform: "translateX(102%)",
           },
           "&:hover": {
             color: colors.white,
@@ -187,12 +188,43 @@ theme = createTheme(theme, {
               transform: "translateX(0)",
             },
           },
-
           "@media (hover: none)": {
             "&:hover": {
               backgroundColor: "transparent",
               color: `${colors.primary} !important`,
-
+              "&::before, &::after": {
+                transform: "translateX(-102%)",
+              },
+            },
+          },
+        },
+        secondary: {
+          color: colors.primary,
+          backgroundColor: colors.white,
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: colors.hoverColor,
+            transform: "scaleX(0)",
+            transformOrigin: "right",
+            transition: "transform 500ms ease",
+            zIndex: -1,
+          },
+          "&:hover": {
+            color: colors.white,
+            "&::before": {
+              transform: "scaleX(1)",
+              transformOrigin: "left",
+            },
+          },
+          "@media (hover: none)": {
+            "&:hover": {
+              backgroundColor: "transparent",
+              color: `${colors.primary} !important`,
               "&::before": {
                 transform: "scaleX(0)",
               },
@@ -201,6 +233,7 @@ theme = createTheme(theme, {
         },
       },
     },
+
     MuiTab: {
       styleOverrides: {
         root: {
@@ -225,6 +258,17 @@ theme = createTheme(theme, {
         },
         notchedOutline: {
           borderColor: colors.borderColor,
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          padding: "4px 0px",
+          fontSize: 12,
+          fontFamily: "Minion",
+          textTransform: "uppercase",
+          height: "auto",
         },
       },
     },

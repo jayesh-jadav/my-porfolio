@@ -1,16 +1,12 @@
 import { useSelector } from "react-redux";
-import "./App.css";
+import { useEffect, useState } from "react";
 import Header from "./Components/Header";
 import { colors } from "./Config/theme";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
-import Contact from "./Components/Contact";
-import Resume from "./Components/Resume";
-import Skills from "./Components/Skills";
-import Projects from "./Components/Projects";
-import About from "./Components/About";
-import { useEffect, useState } from "react";
 import Services from "./Components/Services";
+import Skills from "./Components/Skills";
+import Contact from "./Components/Contact";
 
 function App() {
   const { newTheme } = useSelector((state) => state.auth);
@@ -20,8 +16,11 @@ function App() {
   const handleScrollToSection = (event, newValue) => {
     const section = document.getElementById(newValue);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-      setActiveSection(newValue); // Update active section on click
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "center", // Align to the top of the section
+      });
+      setActiveSection(newValue);
     }
   };
 
@@ -36,20 +35,31 @@ function App() {
         "resume",
         "contact",
       ];
-      const offset = 150; // Offset to trigger active section a bit earlier
+      const offset = 150;
 
       sections.forEach((id) => {
         const section = document.getElementById(id);
         if (
           section &&
-          section.getBoundingClientRect().top < offset &&
-          section.getBoundingClientRect().bottom > 0
+          section.getBoundingClientRect().top < window.innerHeight - offset &&
+          section.getBoundingClientRect().bottom > offset
         ) {
           setActiveSection(id);
         }
       });
     };
+
     window.addEventListener("scroll", handleScroll);
+
+    // Scroll to the home section on initial load
+    const homeSection = document.getElementById("home");
+    if (homeSection) {
+      homeSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -79,7 +89,12 @@ function App() {
         <section id="home">
           <Home />
         </section>
-
+        <section id="services">
+          <Services />
+        </section>
+        <section id="skills">
+          <Skills />
+        </section>
         <section id="contact">
           <Contact />
         </section>

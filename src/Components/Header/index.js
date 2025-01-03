@@ -31,16 +31,14 @@ const Header = (props) => {
       }}
     >
       <Grid
-        size={{ xs: 11, md: 10 }}
+        size={{ xs: 11, md: 9 }}
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        <IconButton>
-          <MainLogo />
-        </IconButton>
+        <MainLogo />
         <Grid
           style={{
             display: "flex",

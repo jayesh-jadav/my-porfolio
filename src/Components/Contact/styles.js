@@ -3,12 +3,14 @@ import { colors } from "../../Config/theme";
 
 const useStyles = makeStyles(() => ({
   container: {
-    margin: "50px 0px 0px",
     padding: "50px 0px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.secondary,
+  },
+  mainHeader: {
+    textAlign: "center",
   },
   section: {
     marginTop: 30,

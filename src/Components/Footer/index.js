@@ -26,7 +26,7 @@ function Footer(props) {
         flexDirection: "column",
       }}
     >
-      <Grid size={{ xs: 11, md: 10 }}>
+      <Grid size={{ xs: 11, md: 9 }}>
         <Grid
           style={{
             display: "flex",

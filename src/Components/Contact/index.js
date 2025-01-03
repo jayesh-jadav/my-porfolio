@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import useStyles from "./styles";
-import { Button, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CircularProgress,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { colors } from "../../Config/theme";
 import { Setting } from "../../Utils/setting";
 import SendIcon from "@mui/icons-material/Send";
+import emailjs from "emailjs-com";
 
 function Contact() {
   const className = useStyles();
@@ -17,6 +25,12 @@ function Contact() {
     message: "",
   });
   const [errors, setErrors] = useState({});
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success", // success or error
+  });
+  const [btnLoad, setBtnLoad] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -42,19 +56,43 @@ function Contact() {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validate()) {
-      // Handle form submission
-      console.log("Form Submitted", formValues);
-      alert("Form submitted successfully!");
-      setFormValues({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
-      setErrors({});
+      try {
+        setBtnLoad(true);
+        // Send email via EmailJS
+        const response = await emailjs.send(
+          "service_vbcwp8e", // Replace with your EmailJS service ID
+          "template_8dgreb4", // Replace with your EmailJS template ID
+          formValues, // This will send the form values as parameters
+          "J-L9Nk5hoIdsDng9t" // Replace with your EmailJS user ID
+        );
+        console.log("Message sent successfully:", response);
+        setSnackbar({
+          open: true,
+          message: "Form submitted successfully!",
+          severity: "success",
+        });
+        // Clear form after successful submission
+        setFormValues({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } catch (error) {
+        console.log("Error sending message:", error);
+        setSnackbar({
+          open: true,
+          message: "Failed to send message, please try again.",
+          severity: "error",
+        });
+      } finally {
+        setBtnLoad(false);
+      }
     }
   };
 
@@ -157,9 +195,6 @@ function Contact() {
                   <Button
                     type="submit"
                     variant="contained"
-                    style={{
-                      width: 300,
-                    }}
                     endIcon={
                       <SendIcon
                         style={{
@@ -170,11 +205,25 @@ function Contact() {
                       />
                     }
                   >
-                    Send Message
+                    {btnLoad ? <CircularProgress size={22} /> : "Send Message"}
                   </Button>
                 </Grid>
               </Grid>
             </form>
+            <Snackbar
+              open={snackbar.open}
+              autoHideDuration={6000} // auto-hide after 6 seconds
+              onClose={() => setSnackbar({ ...snackbar, open: false })}
+            >
+              <Alert
+                onClose={() => setSnackbar({ ...snackbar, open: false })}
+                severity={snackbar.severity}
+                variant="filled"
+                sx={{ width: "100%" }}
+              >
+                {snackbar.message}
+              </Alert>
+            </Snackbar>
           </Grid>
         </Grid>
       </Grid>
